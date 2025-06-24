@@ -8,19 +8,24 @@
     <div class="page-container">
         <div class="products-list">
             {% for product in products %}
-                <div class="content-container">
+                <div class="content-container-list">
                     <h3>{{ product.name() }}</h3>
                     <img class="product-image" src="{{ asset(product.imagepath()) }}" alt="."/>
                     <p class="product-price">{{ product.price() }} €</p>
                     <p class="description-product">{{ product.description }}</p>
                     <button type="submit" class="submitButton"
-                            onclick="addToCart(`{{ product.name }}`, {{ product.id }})">Ajouter au panier
+                            onclick="addToCart(`{{ product.name }}`, {{ product.id }}, {{ product.price }})">
+                        Ajouter au panier
                     </button>
                 </div>
             {% else %}
                 <p>Aucun produit</p>
             {% endfor %}
         </div>
+
+        <button onclick="sendCommand()" class="submitButton">
+            Passer commande
+        </button>
     </div>
 {% endblock %}
 

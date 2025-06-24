@@ -2,22 +2,49 @@ const saveCart = (cart) => localStorage.setItem("cart", JSON.stringify(cart));
 
 const getCart = () => {
     try {
-        return JSON.parse(localStorage.getItem("cart")) || [];
+        return JSON.parse(localStorage.getItem("cart")) || {};
     } catch (e) {
-        return [];
+        return {};
     }
 }
 
 const updateCartCount = () => {
-    let total = JSON.parse(localStorage.getItem("cart"));
-    localStorage.setItem("cartCount", total.length.toString());
-    console.log(total)
+    let total = Object.keys(JSON.parse(localStorage.getItem("cart"))).length;
+    localStorage.setItem("cartCount", total.toString());
 }
 
-const addToCart = (name, id) => {
+const addToCart = (name, id, price) => {
     const cart = getCart();
-    cart.push({id: id, name: name});
+
+    if (cart[id]) {
+        cart[id].quantity += 1;
+    } else {
+        cart[id] = {id: id, name: name, price: price, quantity: 1};
+    }
+
+    console.log(cart);
+
     saveCart(cart);
     updateCartCount();
-    alert(`Produit "${name}" ajouté au panier !`);
+    alert(`Produits "${name}" ajouté au panier !`);
+}
+
+const sendCommand = async () => {
+
+    const url = "/stripe";
+    try {
+        const cart = JSON.parse(localStorage.getItem("cart"));
+
+        const response = await fetch(url, {
+            method: "POST", body: JSON.stringify(cart),
+        });
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        window.location.href = response.url;
+    } catch (error) {
+        console.error(error.message);
+    }
+
 }

@@ -14,6 +14,7 @@ body {
     height: 100%;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -53,27 +54,46 @@ h3 {
     background: white;
     border: black solid 1px;
     -webkit-box-shadow: -5px 5px 0px 1px #000000;
+}
 
-    .submitButton {
-        font-size: 1.4rem;
+.content-container-list {
+    display: flex;
+    flex-direction: column;
 
-        justify-self: center;
+    width: fit-content;
+    height: 100%;
 
-        width: fit-content;
-        height: fit-content;
+    justify-content: center;
+    align-items: center;
 
-        justify-content: center;
 
-        margin: 16px auto 0 auto;
+    margin: 16px;
+    padding: 16px 48px 16px 40px;
 
-        background: white;
-        border: black solid 1px;
-    }
+    background: white;
+    border: black solid 1px;
+    -webkit-box-shadow: -5px 5px 0px 1px #000000;
+}
 
-    .submitButton:hover {
-        color: white;
-        background: black;
-    }
+.submitButton {
+    font-size: 1.4rem;
+
+    justify-self: center;
+
+    width: fit-content;
+    height: fit-content;
+
+    justify-content: center;
+
+    margin: 16px auto 0 auto;
+
+    background: white;
+    border: black solid 1px;
+}
+
+.submitButton:hover {
+    color: white;
+    background: black;
 }
 
 .product-price {
