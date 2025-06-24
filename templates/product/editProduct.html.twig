@@ -6,7 +6,7 @@
 
 {% block body %}
     <div class="page-container">
-        <form action="" method="POST" class="content-container">
+        <form action="" method="POST" class="content-container" enctype="multipart/form-data">
             <h3>Ajouter un produit</h3>
             <label for="title">
                 <p>Nom du produit :</p>
@@ -22,7 +22,20 @@
                 <input name="price" type="text" class="password" placeholder="Entrez un prix"
                        value="{{ product.price }}">
             </label>
+
+            <label for="file">Image:
+                <input type="file" name="file" id="file" required>
+            </label>
+
             <input type="submit" value="Créer" class="submitButton">
         </form>
     </div>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 {% endblock %}

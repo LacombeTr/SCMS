@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Product;
+use App\Repository\ImageRepository;
 use App\Repository\ProductRepository;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,19 +15,41 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ProductController extends AbstractController
 {
     #[Route('/product/create', name: 'product_create')]
-    public function createProduct(Request $request, ProductRepository $productRepository): Response
+    public function createProduct(Request $request, ProductRepository $productRepository, ImageRepository $imageRepository): Response
     {
         $product = new Product();
+        $image = new Image();
 
         if ($request->isMethod("POST")) {
+            $uploadedFile = $request->files->get('file');
 
-            $product->setName($request->request->get("title"));
-            $product->setDescription($request->request->get("description"));
-            $product->setPrice($request->request->get("price"));
+            if ($uploadedFile) {
 
-            $productRepository->save($product, true);
+                try {
+                    $uploadsDirectory = 'uploads/images/products/';
+                    $filename = $request->request->get("title") . '.' . $uploadedFile->guessExtension();
+
+                    $product->setName($request->request->get("title"));
+                    $product->setDescription($request->request->get("description"));
+                    $product->setPrice($request->request->get("price"));
+                    $product->setImagePath($uploadsDirectory . $filename);
+
+                    $image->setName($filename);
+                    $image->setFilePath($uploadsDirectory . $filename);
+                    $uploadedFile->move($uploadsDirectory, $filename);
+
+                    $productRepository->save($product, true);
+                    $imageRepository->save($image, true);
+                } catch (FileException $e) {
+                    $this->addFlash('error', 'Failed to upload file: ' . $e->getMessage());
+                    return $this->redirectToRoute('file_upload_form');
+                }
+
+                $this->addFlash('success', 'File uploaded successfully!');
+            } else {
+                $this->addFlash('error', 'No file selected.');
+            }
         }
-
         return $this->render('product/editProduct.html.twig', ['product' => $product]);
     }
 

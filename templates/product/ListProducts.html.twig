@@ -6,18 +6,21 @@
 
 {% block body %}
     <div class="page-container">
-        {% for product in products %}
-            <div class="content-container">
-                <h3>{{ product.name() }}</h3>
-                <p class="product-price">{{ product.price() }} €</p>
-                <p class="description-product">{{ product.description }}</p>
-                <button type="submit" class="submitButton"
-                        onclick="addToCart(`{{ product.name }}`, {{ product.id }})">Ajouter au panier
-                </button>
-            </div>
-        {% else %}
-            <p>Aucun produit</p>
-        {% endfor %}
+        <div class="products-list">
+            {% for product in products %}
+                <div class="content-container">
+                    <h3>{{ product.name() }}</h3>
+                    <img class="product-image" src="{{ asset(product.imagepath()) }}" alt="."/>
+                    <p class="product-price">{{ product.price() }} €</p>
+                    <p class="description-product">{{ product.description }}</p>
+                    <button type="submit" class="submitButton"
+                            onclick="addToCart(`{{ product.name }}`, {{ product.id }})">Ajouter au panier
+                    </button>
+                </div>
+            {% else %}
+                <p>Aucun produit</p>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
 
