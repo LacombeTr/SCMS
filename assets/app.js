@@ -8,3 +8,11 @@ import './bootstrap.js';
 import './styles/app.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+
+const getCart = () => {
+    try {
+        return JSON.parse(localStorage.getItem("cart")) || [];
+    } catch (e) {
+        return [];
+    }
+}

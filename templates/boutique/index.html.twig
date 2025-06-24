@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notre boutique{% endblock %}
+{% block stylesheets %}
+    <link href="/styles/app.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="page-container">
+        <div class="products-list">
+            <div class="content-container">
+                <p class="product-title">chaussure</p>
+                <p class="product-price">10 $</p>
+            </div>
+            <div class="content-container">
+                <p class="product-title">Nachos</p>
+                <p class="product-price">20 $</p>
+            </div>
+            <div class="content-container">
+                <p class="product-title">Chapeau</p>
+                <p class="product-price">12 $</p>
+            </div>
+            <div class="content-container">
+                <p class="product-title">Chausse-pied</p>
+                <p class="product-price">67 $</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/shop.js"></script>
+{% endblock %}

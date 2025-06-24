@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="/styles/products.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="page-container">
+        {% for product in products %}
+            <div class="content-container">
+                <h3>{{ product.name() }}</h3>
+                <p class="product-price">{{ product.price() }} €</p>
+                <p class="description-product">{{ product.description }}</p>
+                <button type="submit" class="submitButton"
+                        onclick="addToCart(`{{ product.name }}`, {{ product.id }})">Ajouter au panier
+                </button>
+            </div>
+        {% else %}
+            <p>Aucun produit</p>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/shop.js"></script>
+{% endblock %}
