@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('styles/registration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+    <div class="page-container">
+        <form action="" method="POST" class="content-container">
+            <h3>S'incrire</h3>
+            <label for="userName">Nom :
+                <input name="userName" type="text" placeholder="ex: Michel">
+            </label>
+            <label>Prénom :
+                <input name="userSurname" type="text" placeholder="ex: Dupont">
+            </label>
+            <label for="screenName">Pseudonyme :
+                <input name="screenName" type="text" placeholder="ex: Michel_Dpt3">
+            </label>
+            <label for="password">Mot de passe :
+                <input name="password" type="password" placeholder="ex: MotM4g1que!">
+            </label>
+            <label for="email">Email :
+                <input name="email" type="email" placeholder="ex: email@mail.com">
+            </label>
+            <label for="adress">Rue et nº :
+                <input name="adress" type="text" placeholder="ex: 3 rue du prunier">
+            </label>
+            <label for="cityCode">Code Postal :
+                <input name="cityCode" type="text" placeholder="ex: 63000">
+            </label>
+            <label for="city">Ville :
+                <input name="city" type="text" placeholder="ex: Clermont-Ferrand">
+            </label>
+            <input type="submit" value="Valider" class="submitButton">
+        </form>
+    </div>
+{% endblock %}

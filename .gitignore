@@ -20,3 +20,5 @@ public/uploads
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+/assets/icons/symfony.svg
+/config/packages/twig_component.yaml

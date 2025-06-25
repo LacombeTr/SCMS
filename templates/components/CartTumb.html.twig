@@ -1,0 +1,15 @@
+{% block stylesheets %}
+    <link href="{{ asset('styles/components/cartTumb.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+<button class="cart-button" onclick="displayCartList()">
+    <div class="button-container">
+        <p id="cartCount"></p>
+        {{ ux_icon('tdesign:cart-filled', {height: '48px', class: "cart-icon-tumb"}) }}
+    </div>
+</button>
+
+{% block javascripts %}
+    <script src="/js/components/cartTumb.js"></script>
+{% endblock %}

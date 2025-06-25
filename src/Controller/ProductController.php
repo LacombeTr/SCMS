@@ -40,12 +40,14 @@ final class ProductController extends AbstractController
 
                     $productRepository->save($product, true);
                     $imageRepository->save($image, true);
+
+                    $this->addFlash('success', 'File uploaded successfully!');
+                    return $this->redirectToRoute('product_create'); // ou autre route
                 } catch (FileException $e) {
                     $this->addFlash('error', 'Failed to upload file: ' . $e->getMessage());
                     return $this->redirectToRoute('file_upload_form');
                 }
 
-                $this->addFlash('success', 'File uploaded successfully!');
             } else {
                 $this->addFlash('error', 'No file selected.');
             }
@@ -79,8 +81,6 @@ final class ProductController extends AbstractController
     #[Route('/product/delete/{product}', name: 'product_delete')]
     public function deleteProduct(Request $request, Product $product, ProductRepository $productRepository): Response
     {
-
-
         return $this->render('product/editProduct.html.twig', ['product' => $product]);
     }
 }

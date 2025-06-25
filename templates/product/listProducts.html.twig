@@ -15,7 +15,7 @@
                     <p class="description-product">{{ product.description }}</p>
                     <button type="submit" class="submitButton"
                             onclick="addToCart(`{{ product.name }}`, {{ product.id }}, {{ product.price }})">
-                        Ajouter au panier
+                        Ajouter au panier {{ ux_icon('icon-park-solid:shopping', {height: '16px'}) }}
                     </button>
                 </div>
             {% else %}
@@ -27,6 +27,8 @@
             Passer commande
         </button>
     </div>
+
+    {{ component('CartList') }}
 {% endblock %}
 
 {% block javascripts %}

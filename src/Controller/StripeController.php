@@ -16,7 +16,7 @@ final class StripeController extends AbstractController
     }
 
     #[Route('/stripe', name: 'app_stripe')]
-    public function index(Request $request, ProductRepository $productRepository)
+    public function createLink(Request $request, ProductRepository $productRepository): ?\Symfony\Component\HttpFoundation\RedirectResponse
     {
 
         if ($request->isMethod("POST")) {
@@ -71,4 +71,12 @@ final class StripeController extends AbstractController
         }
 
     }
+
+//  TODO: integrer le WebHook de Stripe
+//    #[Route('/stripe/webhook', name: 'app_stripe_web_hook')]
+//    public function indexWebhook(Request $request, ProductRepository $productRepository)
+//    {
+//
+//    }
+
 }

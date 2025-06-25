@@ -3,6 +3,7 @@ html {
 }
 
 body {
+    position: relative;
     font-family: Helvetica, sans-serif;
     margin: 0;
     padding: 0;
@@ -147,4 +148,17 @@ label {
 
 label:not(:first-child) {
     margin-top: 8px;
+}
+
+.cartList {
+    position: fixed;
+
+    display: block;
+
+    bottom: 0;
+    left: 0;
+
+    height: 100vh;
+
+    border: black solid 1px;
 }

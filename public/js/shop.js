@@ -9,7 +9,13 @@ const getCart = () => {
 }
 
 const updateCartCount = () => {
-    let total = Object.keys(JSON.parse(localStorage.getItem("cart"))).length;
+    const cart = getCart();
+    let total = 0;
+
+    for (const [key, value] of Object.entries(cart)) {
+        total += value.quantity;
+    }
+
     localStorage.setItem("cartCount", total.toString());
 }
 
@@ -21,8 +27,6 @@ const addToCart = (name, id, price) => {
     } else {
         cart[id] = {id: id, name: name, price: price, quantity: 1};
     }
-
-    console.log(cart);
 
     saveCart(cart);
     updateCartCount();
@@ -47,4 +51,11 @@ const sendCommand = async () => {
         console.error(error.message);
     }
 
+}
+
+const displayCartList = () => {
+    const cartList = document.getElementById(`cartList`)
+    cartList.classList.contains((`hideElement`))
+        ? cartList.classList.remove(`hideElement`)
+        : cartList.classList.add(`hideElement`)
 }
