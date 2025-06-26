@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notre boutique{% endblock %}
+{% block stylesheets %}
+    <link href="/styles/cart.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="content-container">
+        <h3>Votre panier</h3>
+        {#    id_produit: {"id": integer, "name": string, "price": float, "quantity": integer}, #}
+        <table class="styled-table">
+            <thead>
+            <tr>
+                <th scope="col">Produit</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Prix unité</th>
+                <th scope="col">Prix total</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for product in cart %}
+                <tr class="table-row">
+                    <td>{{ product.name }}</td>
+                    <td class="quantity">{{ product.quantity }}</td>
+                    <td class="price">{{ product.price }} €</td>
+                    <td class="price">{{ product.price * product.quantity }} €</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <button onclick="sendCommand()" class="submitButton">
+            Passer commande
+        </button>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/shop.js"></script>
+{% endblock %}

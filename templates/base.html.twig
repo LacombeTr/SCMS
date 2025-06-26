@@ -5,16 +5,18 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    <link href="{{ asset('styles/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('styles/global.css') }}" rel="stylesheet">
     {% block stylesheets %}
 
     {% endblock %}
 </head>
 <body>
 
-{% block body %}{% endblock %}
-<button data-controller="cart" data-action="click->cart#reload">Rafraîchir le panier</button>
-<turbo-frame id="cart-tumb-frame" src="{{ path('component_cart_tumb') }}"></turbo-frame>
+<twig:NavBar/>
+<div class="page-container">
+    {% block body %}{% endblock %}
+</div>
+<twig:CartTumb/>
 
 </body>
 

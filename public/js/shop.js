@@ -16,6 +16,9 @@ const updateCartCount = () => {
         total += value.quantity;
     }
 
+    const cartCounter = document.getElementById("cartCount");
+    cartCounter.innerText = total.toString() || "0";
+
     localStorage.setItem("cartCount", total.toString());
 }
 
@@ -30,7 +33,6 @@ const addToCart = (name, id, price) => {
 
     saveCart(cart);
     updateCartCount();
-    alert(`Produits "${name}" ajouté au panier !`);
 }
 
 const sendCommand = async () => {

@@ -5,31 +5,29 @@
 {% endblock %}
 
 {% block body %}
-    <div class="page-container">
-        <form action="" method="POST" class="content-container" enctype="multipart/form-data">
-            <h3>Ajouter un produit</h3>
-            <label for="title">
-                <p>Nom du produit :</p>
-                <input name="title" type="text" placeholder="Entrez un nom" value="{{ product.name }}">
-            </label>
-            <label for="description">
-                <p>Description :</p>
-                <textarea name="description" type="text" class="password"
-                          placeholder="Entrez une description">{{ product.description }}</textarea>
-            </label>
-            <label for="price">
-                <p>Prix :</p>
-                <input name="price" type="text" class="password" placeholder="Entrez un prix"
-                       value="{{ product.price }}">
-            </label>
+    <form action="" method="POST" class="content-container" enctype="multipart/form-data">
+        <h3>Ajouter un produit</h3>
+        <label for="title">
+            <p>Nom du produit :</p>
+            <input name="title" type="text" placeholder="Entrez un nom" value="{{ product.name }}">
+        </label>
+        <label for="description">
+            <p>Description :</p>
+            <textarea name="description" type="text" class="password"
+                      placeholder="Entrez une description">{{ product.description }}</textarea>
+        </label>
+        <label for="price">
+            <p>Prix :</p>
+            <input name="price" type="text" class="password" placeholder="Entrez un prix"
+                   value="{{ product.price }}">
+        </label>
 
-            <label for="file">Image:
-                <input type="file" name="file" id="file" required>
-            </label>
+        <label for="file">Image:
+            <input type="file" name="file" id="file" required>
+        </label>
 
-            <input type="submit" value="Créer" class="submitButton">
-        </form>
-    </div>
+        <input type="submit" value="Créer" class="submitButton">
+    </form>
 
     {% for label, messages in app.flashes %}
         {% for message in messages %}

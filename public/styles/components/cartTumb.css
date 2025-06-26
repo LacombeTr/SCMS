@@ -8,13 +8,13 @@
     border: none;
 }
 
-.cart-icon-tumb {
-    color: black;
-}
-
-.cart-icon-tumb:hover {
+.cart-button:hover {
     animation-duration: 0.25s;
     animation-name: slideHover;
+}
+
+.cart-icon-tumb {
+    color: black;
 }
 
 .button-container {

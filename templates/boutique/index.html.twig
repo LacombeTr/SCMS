@@ -1,31 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Notre boutique{% endblock %}
 {% block stylesheets %}
     <link href="/styles/products.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
-    <div class="page-container">
-        <div class="products-list">
-            <div class="content-container">
-                <p class="product-title">chaussure</p>
-                <p class="product-price">10 $</p>
+    <div class="products-list">
+        {% for product in products %}
+            <div class="content-container-list">
+                <h3>{{ product.name() }}</h3>
+                <img class="product-image" src="{{ asset(product.imagepath()) }}" alt="."/>
+                <p class="product-price">{{ product.price() }} €</p>
+                <p class="description-product">{{ product.description }}</p>
+                <button type="submit" class="submitButton"
+                        onclick="addToCart(`{{ product.name }}`, {{ product.id }}, {{ product.price }})">
+                    Ajouter au panier {{ ux_icon('icon-park-solid:shopping', {height: '16px'}) }}
+                </button>
             </div>
-            <div class="content-container">
-                <p class="product-title">Nachos</p>
-                <p class="product-price">20 $</p>
-            </div>
-            <div class="content-container">
-                <p class="product-title">Chapeau</p>
-                <p class="product-price">12 $</p>
-            </div>
-            <div class="content-container">
-                <p class="product-title">Chausse-pied</p>
-                <p class="product-price">67 $</p>
-            </div>
-        </div>
+        {% else %}
+            <p>Aucun produit</p>
+        {% endfor %}
     </div>
+
+    <button onclick="sendCommand()" class="submitButton">
+        Passer commande
+    </button>
+
+    {{ component('CartList') }}
 {% endblock %}
 
 {% block javascripts %}

@@ -6,6 +6,7 @@ use App\Entity\Image;
 use App\Entity\Product;
 use App\Repository\ImageRepository;
 use App\Repository\ProductRepository;
+use App\Services\cartService;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +16,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ProductController extends AbstractController
 {
     #[Route('/product/create', name: 'product_create')]
-    public function createProduct(Request $request, ProductRepository $productRepository, ImageRepository $imageRepository): Response
+    public function createProduct(Request $request, ProductRepository $productRepository, ImageRepository $imageRepository, CartService $cartService): Response
     {
         $product = new Product();
         $image = new Image();

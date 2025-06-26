@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ProductRepository;
+use App\Services\cartService;
 use Stripe\StripeClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -16,21 +17,21 @@ final class StripeController extends AbstractController
     }
 
     #[Route('/stripe', name: 'app_stripe')]
-    public function createLink(Request $request, ProductRepository $productRepository): ?\Symfony\Component\HttpFoundation\RedirectResponse
+    public function createLink(Request $request, ProductRepository $productRepository, cartService $cartService): ?\Symfony\Component\HttpFoundation\RedirectResponse
     {
 
         if ($request->isMethod("POST")) {
 
             // On récupère les données du panier à l'aide d'un post
-            $cart = json_decode($request->getContent(), true);
-            dump($cart);
-            dump(gettype($cart));      // doit afficher "array"
-            dump(is_array($cart));     // doit afficher true
+            $localCart = json_decode($request->getContent(), true);
+
+            $cart = $cartService->priceChecker($localCart, $productRepository);
+
             // On itère dans a travers le panier pour recuprer les prix associés aux ID
             $totalPrice = 0;
 
             foreach ($cart as $key => $value) {
-                $price = $productRepository->findOneBy(['id' => $key])->getPrice() * ($value["quantity"]);
+                $price = ($value["price"]) * ($value["quantity"]);
                 $totalPrice = $totalPrice + ($price * 100);
             }
 
@@ -73,6 +74,7 @@ final class StripeController extends AbstractController
     }
 
 //  TODO: integrer le WebHook de Stripe
+//
 //    #[Route('/stripe/webhook', name: 'app_stripe_web_hook')]
 //    public function indexWebhook(Request $request, ProductRepository $productRepository)
 //    {
