@@ -15,9 +15,17 @@ class UserForm extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'E-mail'])
-            ->add('password', PasswordType::class, [
-                'label' => 'Mot de passe']);
+                'label' => 'E-mail',
+                'attr' => [
+                    'class' => 'form-field',
+                ],
+            ]);
+        $builder->add('password', PasswordType::class, [
+            'label' => 'Mot de passe',
+            'attr' => [
+                'class' => 'form-field',
+            ],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

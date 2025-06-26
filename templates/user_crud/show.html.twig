@@ -1,34 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('styles/registration.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Voir l'utilisateur{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <div class="content-container">
+        <div class="title-container">
+            <h3 class="surlignage-magenta">Informations</h3>
+        </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="form-container">
+            <p class="attribute-title">Id</p>
+            <p>{{ user.id }}</p>
+            
+            <p class="attribute-title">Email</p>
+            <p>{{ user.email }}</p>
 
-    <a href="{{ path('app_user_crud_index') }}">back to list</a>
+            <p class="attribute-title">Roles</p>
+            <p>{{ user.roles ? user.roles|json_encode : '' }}</p>
 
-    <a href="{{ path('app_user_crud_edit', {'id': user.id}) }}">edit</a>
+            <p class="attribute-title">Password</p>
+            <p>{{ user.password }}</p>
 
-    {{ include('user_crud/_delete_form.html.twig') }}
+            <div class="edit-buttons">
+                <a href="{{ path('app_user_crud_index') }}" class="submit-button">Revenir à la liste</a>
+
+                <a href="{{ path('app_user_crud_edit', {'id': user.id}) }}">
+                    {{ ux_icon('ep:edit', {height: '20px', class: "icons delete-icon"}) }}
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

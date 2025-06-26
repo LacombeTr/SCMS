@@ -4,7 +4,7 @@
     <link href="{{ asset('styles/registration.css') }}" rel="stylesheet">
 {% endblock %}
 
-{% block title %}S'inscrire{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
     <div class="content-container">
@@ -13,8 +13,8 @@
         </div>
 
         {{ form_start(form, {'attr': {'id': 'new_edit_utilisateur','class': 'form-container'}}) }}
-        {# utilisation de classes bootstrap pour la mise en forme #}
-        {# TODO: Ajoute rles champs restant de l'inscription qui iront dans une autre table #}
+        
+        {# TODO: Ajouter les champs restant de l'inscription qui iront dans une autre table #}
         {{ form_label(form.email) }}
         {{ form_widget(form.email) }}
         {{ form_label(form.password) }}

@@ -14,7 +14,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 final class UserCrudController extends AbstractController
 {
-    #[Route(name: 'app_user_crud_index', methods: ['GET'])]
+    #[Route('/user/index', name: 'app_user_crud_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('user_crud/index.html.twig', [
@@ -46,7 +46,7 @@ final class UserCrudController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_user_crud_show', methods: ['GET'])]
+    #[Route('/user/{id}', name: 'app_user_crud_show', methods: ['GET'])]
     public function show(User $user): Response
     {
         return $this->render('user_crud/show.html.twig', [
@@ -54,7 +54,7 @@ final class UserCrudController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_user_crud_edit', methods: ['GET', 'POST'])]
+    #[Route('/user/{id}/edit', name: 'app_user_crud_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(UserForm::class, $user);
@@ -72,7 +72,7 @@ final class UserCrudController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_user_crud_delete', methods: ['POST'])]
+    #[Route('/user/{id}', name: 'app_user_crud_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->getPayload()->getString('_token'))) {

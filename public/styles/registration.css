@@ -5,6 +5,13 @@ h3 {
     font-weight: bold;
 }
 
+a,
+a:link,
+a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
 .content-container {
     display: flex;
     flex-direction: column;
@@ -25,7 +32,7 @@ h3 {
 
 .submit-button {
     grid-column: span 2;
-    
+
     font-size: 1.4rem;
 
     justify-self: center;
@@ -35,7 +42,7 @@ h3 {
 
     justify-content: center;
 
-    margin: 16px auto 0 auto;
+    padding: 0 8px;
 
     background: white;
     border: black solid 1px;
@@ -44,6 +51,21 @@ h3 {
 .submit-button:hover {
     color: white;
     background: black;
+}
+
+.remember-me {
+    grid-column: span 2;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    * {
+        margin-inline: 8px;
+    }
 }
 
 .form-container {
@@ -58,20 +80,41 @@ h3 {
 
     font-size: 1.4rem;
     color: black;
+}
 
-    input {
-        width: 100%;
-        margin: 0;
-        padding: 2px 4px;
+.form-container > input {
+    width: 100%;
+    margin: 0;
+    padding: 2px 4px;
 
-        font-size: 1.2rem;
-        padding-inline: 8px;
-        background: white;
-        border: black solid 1px;
-    }
+    font-size: 1.2rem;
+    padding-inline: 8px;
+    background: white;
+    border: black solid 1px;
+}
 
-    input::placeholder {
-        color: darkgrey;
+.form-container.input::placeholder {
+    color: darkgrey;
+}
+
+.attribute-title {
+    font-weight: bold;
+}
+
+.edit-buttons {
+    grid-column: span 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    * {
+        margin-inline: 8px;
     }
 }
 
+.return {
+    margin-top: 16px;
+}

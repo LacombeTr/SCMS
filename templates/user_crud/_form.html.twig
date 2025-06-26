@@ -1,4 +1,10 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'id': 'new_edit_utilisateur','class': 'form-container'}}) }}
+    {{ form_label(form.email) }}
+    {{ form_widget(form.email, {'attr': {'class': 'input'}}) }}
+    {{ form_errors(form.email) }}
+    {{ form_label(form.password) }}
+    {{ form_widget(form.password, {'attr': {'class': 'input'}}) }}
+    {{ form_errors(form.password) }}
+
+<button class="submit-button">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
