@@ -57,3 +57,28 @@ body {
 .hideElement {
     display: none;
 }
+
+.title-container {
+    display: flex;
+
+    width: fit-content;
+    height: fit-content;
+}
+
+.surlignage-cyan {
+    position: relative;
+    z-index: 1;
+    display: inline-block; /* pour s'adapter à son contenu */
+}
+
+.surlignage-cyan::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 125%;
+    height: 75%;
+    background-color: #2bfafa;
+    transform: translate(-50%, -50%) rotate(-2deg); /* -5deg pour l’inclinaison légère */
+    z-index: -1;
+}

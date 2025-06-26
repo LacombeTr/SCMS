@@ -17,7 +17,7 @@ const updateCartCount = () => {
     }
 
     const cartCounter = document.getElementById("cartCount");
-    cartCounter.innerText = total.toString() || "0";
+    cartCounter.innerText = total.toString() || "";
 
     localStorage.setItem("cartCount", total.toString());
 }

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 
-use App\Entity\Users;
+use App\Entity\User;
 use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -16,7 +16,7 @@ final class RegistrationController extends AbstractController
     #[Route('/registration', name: 'user_registration')]
     public function index(Request $request, UsersRepository $usersRepository): Response
     {
-        $user = new Users();
+        $user = new User();
 
         if ($request->isMethod("POST")) {
 

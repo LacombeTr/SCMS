@@ -12,7 +12,7 @@ h3 {
     width: fit-content;
 
     justify-content: center;
-    align-items: start;
+    align-items: center;
 
 
     margin: 16px;
@@ -23,7 +23,9 @@ h3 {
     -webkit-box-shadow: -5px 5px 0px 1px #000000;
 }
 
-.submitButton {
+.submit-button {
+    grid-column: span 2;
+    
     font-size: 1.4rem;
 
     justify-self: center;
@@ -39,16 +41,21 @@ h3 {
     border: black solid 1px;
 }
 
-.submitButton:hover {
+.submit-button:hover {
     color: white;
     background: black;
 }
 
-label {
+.form-container {
     display: grid;
-    grid-template-columns: 120px 200px;
-    width: 100%;
     justify-items: left;
+
+    width: 100%;
+    margin-top: 16px;
+
+    grid-template-columns: 120px 200px;
+    gap: 16px;
+
     font-size: 1.4rem;
     color: black;
 
@@ -68,6 +75,3 @@ label {
     }
 }
 
-label:not(:first-child) {
-    margin-top: 8px;
-}
