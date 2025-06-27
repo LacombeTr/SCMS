@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,6 +25,19 @@ class UserForm extends AbstractType
             'label' => 'Mot de passe',
             'attr' => [
                 'class' => 'form-field',
+            ],
+        ]);
+        $builder->add('roles', ChoiceType::class, [
+            'label' => 'Rôle',
+            'choices' => [
+                'Utilisateur' => 'ROLE_USER',
+                'Administrateur' => 'ROLE_ADMIN',
+                'Super Admin' => 'ROLE_SUPER_ADMIN',
+            ],
+            'expanded' => true, // select (si true = checkboxes)
+            'multiple' => true, // un utilisateur peut avoir plusieurs rôles
+            'attr' => [
+                'class' => 'role-field',
             ],
         ]);
     }

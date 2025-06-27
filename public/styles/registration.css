@@ -115,6 +115,19 @@ a:visited {
     }
 }
 
+.role-field {
+    display: grid;
+    grid-template-columns: 1.6rem 1fr;
+
+    input, label {
+        align-self: center;
+    }
+
+    label {
+        margin-left: 8px;
+    }
+}
+
 .return {
     margin-top: 16px;
 }

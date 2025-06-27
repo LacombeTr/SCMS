@@ -12,10 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class ProductController extends AbstractController
 {
     #[Route('/product/create', name: 'product_create')]
+    #[IsGranted('ADMIN')]
     public function createProduct(Request $request, ProductRepository $productRepository, ImageRepository $imageRepository, CartService $cartService): Response
     {
         $product = new Product();
