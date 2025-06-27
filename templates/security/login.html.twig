@@ -12,9 +12,6 @@
             <h3 class="surlignage-jaune">Se connecter</h3>
         </div>
         <form method="post" class="form-container">
-            {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
 
             {% if app.user %}
                 <div class="mb-3">
@@ -42,5 +39,10 @@
                 Se connecter
             </button>
         </form>
+        {% if error %}
+            <div class="title-container">
+                <p class="surlignage-magenta wrong-credentials">L'e-mail ou le mot de passe <br> entré n'est pas correct</p>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

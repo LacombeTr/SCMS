@@ -131,3 +131,11 @@ a:visited {
 .return {
     margin-top: 16px;
 }
+
+
+.wrong-credentials {
+    text-align: center;
+    margin-top: 16px;
+    border-radius: 0;
+    font-size: 1.4rem;
+}

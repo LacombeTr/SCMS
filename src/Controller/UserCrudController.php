@@ -11,10 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class UserCrudController extends AbstractController
 {
     #[Route('/user/index', name: 'app_user_crud_index', methods: ['GET'])]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('user_crud/index.html.twig', [
@@ -30,13 +32,14 @@ final class UserCrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword(
-                $passwordHasher->hashPassword($user, $user->getPassword())
-            );
+            $plainPassword = $form->get('plainPassword')->getData();
+            $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
+            $user->setPassword($hashedPassword);
 
             $entityManager->persist($user);
             $entityManager->flush();
 
+            // TODO rediriger vers l'accueil
             return $this->redirectToRoute('app_user_crud_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -47,6 +50,7 @@ final class UserCrudController extends AbstractController
     }
 
     #[Route('/user/{id}', name: 'app_user_crud_show', methods: ['GET'])]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
     public function show(User $user): Response
     {
         return $this->render('user_crud/show.html.twig', [
@@ -73,6 +77,7 @@ final class UserCrudController extends AbstractController
     }
 
     #[Route('/user/{id}', name: 'app_user_crud_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_SUPER_ADMIN')]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->getPayload()->getString('_token'))) {

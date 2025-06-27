@@ -17,8 +17,8 @@
         {# TODO: Ajouter les champs restant de l'inscription qui iront dans une autre table #}
         {{ form_label(form.email) }}
         {{ form_widget(form.email) }}
-        {{ form_label(form.password) }}
-        {{ form_widget(form.password) }}
+        {{ form_label(form.plainPassword) }}
+        {{ form_widget(form.plainPassword) }}
         <label for="verifpass">Entrez de nouveau le mot de passe:</label>
         <input type="password" id="verifpass" required>
         <button class="submit-button">{{ button_label|default('Valider') }}</button>

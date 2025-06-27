@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class ProductController extends AbstractController
 {
     #[Route('/product/create', name: 'product_create')]
-    #[IsGranted('ADMIN')]
+    #[IsGranted('ROLE_ADMIN or ROLE_SUPER_ADMIN')]
     public function createProduct(Request $request, ProductRepository $productRepository, ImageRepository $imageRepository, CartService $cartService): Response
     {
         $product = new Product();
@@ -59,6 +59,7 @@ final class ProductController extends AbstractController
     }
 
     #[Route('/product/update/{product}', name: 'product_update')]
+    #[IsGranted('ROLE_ADMIN or ROLE_SUPER_ADMIN')]
     public function updateProduct(Request $request, Product $product, ProductRepository $productRepository): Response
     {
         if ($request->isMethod("POST")) {
@@ -82,6 +83,7 @@ final class ProductController extends AbstractController
     }
 
     #[Route('/product/delete/{product}', name: 'product_delete')]
+    #[IsGranted('ROLE_ADMIN or ROLE_SUPER_ADMIN')]
     public function deleteProduct(Request $request, Product $product, ProductRepository $productRepository): Response
     {
         return $this->render('product/editProduct.html.twig', ['product' => $product]);

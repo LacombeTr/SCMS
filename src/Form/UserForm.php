@@ -21,7 +21,7 @@ class UserForm extends AbstractType
                     'class' => 'form-field',
                 ],
             ]);
-        $builder->add('password', PasswordType::class, [
+        $builder->add('plainPassword', PasswordType::class, [
             'label' => 'Mot de passe',
             'attr' => [
                 'class' => 'form-field',

@@ -17,14 +17,23 @@
             <p class="attribute-title">Id</p>
             <p>{{ user.id }}</p>
 
+            <p class="attribute-title">Prénom</p>
+            <p>-</p>
+
+            <p class="attribute-title">Nom</p>
+            <p>-</p>
+
             <p class="attribute-title">Email</p>
             <p>{{ user.email }}</p>
 
-            <p class="attribute-title">Roles</p>
+            <p class="attribute-title">Role(s)</p>
             <p>{{ user.roles ? user.getRoleLabels()|join(' / ') : '' }}</p>
 
-            <p class="attribute-title">Password</p>
-            <p>{{ user.password }}</p>
+            <p class="attribute-title">Adresse</p>
+            <p>-</p>
+
+            <p class="attribute-title">Points de fidélité</p>
+            <p>-</p>
 
             <div class="edit-buttons">
                 <a href="{{ path('app_user_crud_index') }}" class="submit-button">Revenir à la liste</a>
