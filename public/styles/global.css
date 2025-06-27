@@ -96,3 +96,36 @@ body {
 .surlignage-jaune::before {
     background-color: #FFFF00;
 }
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.4rem;
+    height: 1.4rem;
+    border: 1px solid black;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+}
+
+input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+}
+
+/* Quand coché, ajouter un carré intérieur */
+input[type="checkbox"].magenta:checked::after {
+    background-color: #FF00FF;
+}
+
+input[type="checkbox"].cyan:checked::after {
+    background-color: #00FFFF;
+}
+
+input[type="checkbox"].jaune:checked::after {
+    background-color: #FFFF00;
+}

@@ -39,6 +39,20 @@ class UserForm extends AbstractType
             'attr' => [
                 'class' => 'role-field',
             ],
+            'choice_attr' => function ($choice, $key, $value) {
+                // $key = label (ex: "Utilisateur")
+                // $value = valeur (ex: "ROLE_USER")
+                switch ($value) {
+                    case 'ROLE_USER':
+                        return ['class' => 'cyan'];
+                    case 'ROLE_ADMIN':
+                        return ['class' => 'jaune'];
+                    case 'ROLE_SUPER_ADMIN':
+                        return ['class' => 'magenta'];
+                    default:
+                        return [];
+                }
+            },
         ]);
     }
 
