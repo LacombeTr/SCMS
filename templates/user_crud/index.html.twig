@@ -32,7 +32,7 @@
                     <td>prénom</td>
                     <td>Adresse</td>
                     <td>{{ user.email }}</td>
-                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>{{ user.roles ? user.getRoleLabels()|join(' / ') : '' }}</td>
                     <td>
                         <div class="action-cell">
                             <a href="{{ path('app_user_crud_show', {'id': user.id}) }}">

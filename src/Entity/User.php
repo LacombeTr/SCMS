@@ -55,7 +55,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -102,5 +102,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getRoleLabels(): array
+    {
+        $labels = [
+            'ROLE_USER' => 'Utilisateur',
+            'ROLE_ADMIN' => 'Administrateur',
+            'ROLE_SUPER_ADMIN' => 'Super Admin',
+        ];
+
+        return array_map(function ($role) use ($labels) {
+            return $labels[$role] ?? $role;
+        }, $this->roles);
     }
 }

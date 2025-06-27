@@ -16,12 +16,12 @@
         <div class="form-container">
             <p class="attribute-title">Id</p>
             <p>{{ user.id }}</p>
-            
+
             <p class="attribute-title">Email</p>
             <p>{{ user.email }}</p>
 
             <p class="attribute-title">Roles</p>
-            <p>{{ user.roles ? user.roles|json_encode : '' }}</p>
+            <p>{{ user.roles ? user.getRoleLabels()|join(' / ') : '' }}</p>
 
             <p class="attribute-title">Password</p>
             <p>{{ user.password }}</p>
