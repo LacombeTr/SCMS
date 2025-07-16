@@ -2,6 +2,34 @@
     <link href="{{ asset('styles/components/navBar.css') }}" rel="stylesheet">
 {% endblock %}
 
-<div class="nav-bar">NavBAr</div>
+<div>
+    <nav class="nav-bar">
+        <div class="sub-menu">
+            {% if app.user %}
+                <p>Bienvenue {{ app.user.id }}</p>
+            {% endif %}
+            <a href="{{ path('app_home') }}" class="nav-button">Accueil</a>
+            <a href="{{ path('product_list') }}" class="nav-button">La boutique</a>
+            {% if app.user %}
+                <a onclick="goToCart()" class="nav-button">Mon panier</a>
+            {% endif %}
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <a href="{{ path('app_user_crud_index') }}" class="nav-button">Utilisateurs</a>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+                <a class="nav-button">Inventaire</a>
+            {% endif %}
+            {% if app.user %}
+                <a class="nav-button">Mon compte</a>
+            {% endif %}
+        </div>
+
+        {% if app.user %}
+            <a href="{{ path('app_logout') }}" class="submit-button">Se déconnecter</a>
+        {% else %}
+            <a href="{{ path('app_login') }}" class="submit-button">Se connecter</a>
+        {% endif %}
+    </nav>
+</div>
 
 

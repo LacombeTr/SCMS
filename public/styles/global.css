@@ -129,3 +129,10 @@ input[type="checkbox"].cyan:checked::after {
 input[type="checkbox"].jaune:checked::after {
     background-color: #FFFF00;
 }
+
+a,
+a:link,
+a:visited {
+    color: inherit;
+    text-decoration: none;
+}

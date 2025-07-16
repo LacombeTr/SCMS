@@ -19,8 +19,6 @@
         {{ form_widget(form.email) }}
         {{ form_label(form.plainPassword) }}
         {{ form_widget(form.plainPassword) }}
-        <label for="verifpass">Entrez de nouveau le mot de passe:</label>
-        <input type="password" id="verifpass" required>
         <button class="submit-button">{{ button_label|default('Valider') }}</button>
         {{ form_end(form) }}
     </div>
